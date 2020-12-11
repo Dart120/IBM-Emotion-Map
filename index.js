@@ -1,16 +1,16 @@
 //to run : node filename.js
-const { json, text } = require('express')
 const express = require('express')
 const app = express()
 const port = 3000
 const btoa = require('btoa')
+var fetch = require('node-fetch');
 
 
-app.get('/', (req, res) => {
-    tex = JSON.parse('{"text": "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!"}')
+app.get('/exampleTone', (req, res) => {
+    tex = JSON.parse('{"text": "All we have to decide is what to do with the time that is given to us"}')
     
 
-    var fetch = require('node-fetch');
+    
 
 fetch('https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com/instances/98be2471-dd42-463a-8816-4f10eb07cb0b/v3/tone?version=2017-09-21', {
     method: 'POST',
@@ -20,7 +20,7 @@ fetch('https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com/instances/98be2471-d
     },
     body: JSON.stringify(tex)
 }).then(response => response.json())
-.then(response=> console.log(response))
+.then(response => res.send(response.document_tone.tones))
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
