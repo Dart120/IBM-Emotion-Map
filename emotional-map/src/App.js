@@ -1,7 +1,7 @@
 
 
 import React from "react";
-
+import Navbar from './Components/Navbar'
 
 import "./styles.css";
 
@@ -9,8 +9,9 @@ import MapChart from "./MapChart";
 
 function App() {
   return (
-    <div>
-      <MapChart />
+    <div className="page">
+      <Navbar />
+      {useIsLarge ? <ComputerView /> : <MobileView />}
     </div>
   );
 }

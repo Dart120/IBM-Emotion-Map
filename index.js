@@ -10,10 +10,6 @@ app.use(bodyParser.json());
 app.get('/getEmotionalData', (req, res) => {
     tweet = req.body.tweet
     text = JSON.parse(`{"text": "${tweet}"}`)
-    
-
-    
-
     fetch('https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com/instances/98be2471-dd42-463a-8816-4f10eb07cb0b/v3/tone?version=2017-09-21', {
         method: 'POST',
         headers: {
