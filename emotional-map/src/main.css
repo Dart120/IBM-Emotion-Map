@@ -1,0 +1,44 @@
+/* css grid for structuring all the components on the page */
+.main-grid{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 83px 907px 450px;
+    width: 100vw;
+    height: 100vw;
+    grid-template-areas:
+      "header header header"
+      "map map regional-dashboard-container "
+      "map map regional-dashboard-container "
+      "main-dashboard main-dashboard main-dashboard";
+}
+
+
+.header{
+    background: green;
+    grid-area: header;
+    
+}
+
+
+.map-container{
+    position:relative;
+
+    background: purple;
+
+    grid-area: map;
+
+  }
+
+.regional-dashboard-container{
+
+      grid-area: regional-dashboard-container;
+      justify-self: center;
+      align-self: center;
+}
+
+.main-dashboard{
+    grid-area: main-dashboard;
+    justify-self: center;
+    align-self: center;
+
+}
