@@ -81,13 +81,13 @@ export default class RegionalDashboard extends Component {
 
                         <div className="regional-top-hashtags">
                             <div className="section_title">
-                                Top Hashtags
+                                Top Trends
                             </div>
                             <FadeIn>
                             {/* {top3HashtagsList} */}
-                            <TwitterLogoList message={data.hash1}/>
-                            <TwitterLogoList message={data.hash2}/>
-                            <TwitterLogoList message={data.hash3}/>
+                            <TwitterLogoList message={data.hash1} long={true}/>
+                            <TwitterLogoList message={data.hash2} long={true}/>
+                            <TwitterLogoList message={data.hash3} long={true}/>
                             </FadeIn>
                         </div>
 
@@ -102,14 +102,10 @@ export default class RegionalDashboard extends Component {
                                 <ProgressBar animated now={data.joy} label={Math.round(data.joy)+"%"} className="orange-progress-bar" height="1px" style={{ height: "30.82px", margin:"10px 0px 10px 0px" , "border-radius": "19.5px"}}/>
                                 <ProgressBar animated now={data.sadness} label={Math.round(data.sadness)+"%"} className="blue-progress-bar" height="1px" style={{ height: "30.82px", margin:"10px 0px 10px 0px", "border-radius": "19.5px" }}/>
                             </div>
-                    
-    
                         </div>
                         <div className="sample-size">
                             Sample size: {data.sample_size}
                         </div>
-                        
-
                     </div>
                     
                 </div>

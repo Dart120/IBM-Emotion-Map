@@ -20,16 +20,16 @@ const fullJSONTemplate = [
     confident: 18.725309202150665,
     analytical: 17.76795795863539,
     tentative: 15.072229461398134,
-    hash1: '#hi',
-    hash2: '#da',
-    hash3: '#asfa',
-    hash4: '#sdfd',
-    hash5: '#gdf',
+    hash1: '#WandaVision',
+    hash2: '#Pokemon',
+    hash3: '#friday',
+    hash4: '#FridayMotivation',
+    hash5: '#FridayFeeling',
     happiest1: "Leeds",
     happiest2: "Manchester",
-    happiest3: "FDHASL",
-    happiest4: "fDSALJ",
-    happiest5: "fnAL:am",
+    happiest3: "Newcastle",
+    happiest4: "London",
+    happiest5: "Southampton",
     sample_size: 650
   },
 
@@ -88,9 +88,9 @@ const regioanlJSONTemplate = {
   confident: 18.725309202150665,
   analytical: 17.76795795863539,
   tentative: 15.072229461398134,
-  hash1: 'hash1',
-  hash2: 'hash2',
-  hash3: 'hash3',
+  hash1: 'trend1',
+  hash2: 'trend2',
+  hash3: 'trend3',
   sample_size: 65
 }
 
@@ -103,6 +103,12 @@ const findUK = (json) => {
   }
 }
 
+
+// Currently the data is being passed as props to the components.
+// Will need to change depending on how we fetch data from server.
+//
+// Maybe make App into a class component and make fetch call from 
+// here?
 function App() {
   return (
     // <div className="page">
