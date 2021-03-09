@@ -7,26 +7,31 @@ import TwitterLogoList from '../Components/TwitterLogoList';
 
 export default function Dashboard(props) {
     const data = props.data;
-    // const arr1 = data.happiestCitiesList;
-    // const arr2 = data.topHashtagsList;
-    // const arr3 = data.topEmotionsList;
-
-    // const happiestCitiesList = arr1.map((cities, index) => {
-    //     return <NumberedList key={"happiestCitiesList"+index} number={(index+1)+"."} message={cities}/>
-    // });
-    // const topHashtagsList = arr2.map((hashtags, index) => {
-    //     return <TwitterLogoList key={"topHashtagsList"+index} message={hashtags}/>
-    // });
     
     const clamp = (num) => Math.min(Math.max(num, 0), 100);
 
     const valuesList = [Math.round(data.fear), Math.round(data.confident),Math.round(data.anger),Math.round(data.joy),Math.round(data.sadness)]
     valuesList.forEach((e, index) => valuesList[index] = clamp(e));
-  
-    // const topEmotionsList = arr1.map((emotions, index) => {
-    //     return <NumberedList key={"topHashtagsList"+index} number={(index+1)+"."} message={emotions}/>
-    // });
+    const emotionsList = ["fear", "confident", "anger", "joy", "sadness"]
+    
+    // [["fear", 12],["confident", 5],...]
+    const zipped = emotionsList.map(function(e, i) {
+      return [e, valuesList[i]];
+    });
 
+    // Sort the zipped array using the percentages (descending order)
+    zipped.sort(function(a, b) {
+      return b[1] - a[1];
+    });
+
+    const orderedEmotions = () => {
+      var toReturn = []
+      for(let i = 0; i < 5; i++){
+        toReturn.push(<NumberedList key={"topHashtagsList"+1} number={(i+1) +"."} message={zipped[i][0].slice(0,1).toUpperCase() + zipped[i][0].slice(1) + " - " + zipped[i][1] + "%"}/>)
+      }
+      return toReturn;
+    } 
+    
     return (
         <div className="outer_container">
           <div className="big_container">
@@ -64,12 +69,7 @@ export default function Dashboard(props) {
               <div className="top_emotions">
                 <div className="section_title">Top Emotions:</div>
                 <FadeIn delay={200}>
-                {/* {topEmotionsList} */}
-                  <NumberedList key={"topHashtagsList"+1} number={"1."} message={"Fear - " + valuesList[0] + "%"}/>
-                  <NumberedList key={"topHashtagsList"+2} number={"2."} message={"Confident - " + valuesList[1] + "%"}/>
-                  <NumberedList key={"topHashtagsList"+3} number={"3."} message={"Anger - " + valuesList[2] + "%"}/>
-                  <NumberedList key={"topHashtagsList"+4} number={"4."} message={"Joy - " + valuesList[3] + "%"}/>
-                  <NumberedList key={"topHashtagsList"+5} number={"5."} message={"Sadness - " + valuesList[4] + "%"}/>
+                  {orderedEmotions()}
                 </FadeIn>
               </div>
               
