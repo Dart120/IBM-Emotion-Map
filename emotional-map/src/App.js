@@ -101,6 +101,12 @@ const regionalJSONTemplate = {
 class App extends React.Component {
   constructor(){
     super();
+    // NOTE TO TEMI: May need to change how data is being passed into 
+    // regional dashboard depending on how the hover functionality is
+    // implemented. May need to change this.state.regionalData as well
+    // depending on this change.
+    // this.state.regionalData resembles the format of the data passed into
+    // the regional dashboard component.
     this.state = {
       regionalData: {
         name: 'Loading...',
@@ -143,16 +149,23 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      // delete code inside and fetch data from localhost
-      //
-      console.log("testing")
+    // delete code inside and fetch data from localhost
+    let fetchData = () => {
       this.setState({
         regionalData : regionalJSONTemplate,
         dashboardData : this.findUK(fetchDummyOutput),
         mapData: false
       });
-    }, 500);
+    }
+
+    // Carry out an initial fetching of data before interval is set
+    fetchData();
+
+    // Fetch data from server every X milliseconds
+    this.interval = setInterval(() => {
+      console.log("testing")
+      fetchData();
+    }, 5000);
   }
   
   componentWillUnmount() {
@@ -160,7 +173,7 @@ class App extends React.Component {
     clearInterval(this.interval);
   }
 
-  // Find UK from the full JSON data
+  
   findUK(json){
     for(var i = 0; i < json.length; i++) {
       if(json[i].name === "United Kingdom"){

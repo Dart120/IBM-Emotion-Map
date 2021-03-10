@@ -80,10 +80,31 @@ export default class RadialChart extends React.Component {
       this.check = this.check.bind(this);
     }
 
-    // ONE WAY TO SOLVE
-    componentDidMount() {
-      this.interval = setTimeout(() => {
-        this.setState(prevState => ({
+    //  SOLUTION 1
+    // componentDidMount() {
+    //   this.interval = setTimeout(() => {
+    //     this.setState(prevState => ({
+    //       series: this.props.values,
+    //       options: {
+    //         ...prevState,
+    //         plotOptions : {
+    //           radialBar: {
+    //             hollow: {
+    //               image: this.check()
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }))
+    //   }, 600);
+    // }
+
+    //  SOLUTION 2
+    // update radial chart values and emoji when
+    // the component updates
+    componentDidUpdate(previousProps, prevState){
+      if (previousProps.values !== this.props.values) {
+        this.setState({
           series: this.props.values,
           options: {
             ...prevState,
@@ -95,8 +116,8 @@ export default class RadialChart extends React.Component {
               }
             }
           }
-        }))
-      }, 1000);
+        })
+    }
     }
 
     check() {
@@ -124,6 +145,7 @@ export default class RadialChart extends React.Component {
   
 
     render() {
+      console.log(this.props.values)
       return (
         <div id="chart">
             <Chart colors={this.state.colors} options={this.state.options} series={this.state.series} type="radialBar" height={280} />
