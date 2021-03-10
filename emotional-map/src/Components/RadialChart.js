@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 
 import fear_emoji from "../images/1F631.svg";
@@ -13,14 +13,11 @@ export default class RadialChart extends React.Component {
       super(props);
 
       this.state = {
-      
         series: this.props.values,
-        
         options: {
           chart: {
             height: 10,
             type: 'radialBar',
-            
           },
           colors: ['#FF0000','#13E900','#B033AB','#F39800','#00AEEF'],
           plotOptions: {
@@ -32,14 +29,6 @@ export default class RadialChart extends React.Component {
                 value: {
                   show: false,
                 },
-                // total: {
-                //   show: false,
-                //   label: 'Total',
-                //   formatter: function (w) {
-                //     // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                //     return 100
-                //   }
-                // }
               },
 
             //   hole
@@ -79,19 +68,35 @@ export default class RadialChart extends React.Component {
                     opacity: 0.5
                 }
             },
-
             stroke: {
                 lineCap: 'round'
               },
-
             }
           },
           labels: ['Fear', 'Confident', 'anger', 'Joy', 'Sadness'],
         },
-      
-      
       };
+      
       this.check = this.check.bind(this);
+    }
+
+    // ONE WAY TO SOLVE
+    componentDidMount() {
+      this.interval = setTimeout(() => {
+        this.setState(prevState => ({
+          series: this.props.values,
+          options: {
+            ...prevState,
+            plotOptions : {
+              radialBar: {
+                hollow: {
+                  image: this.check()
+                }
+              }
+            }
+          }
+        }))
+      }, 1000);
     }
 
     check() {
@@ -120,7 +125,6 @@ export default class RadialChart extends React.Component {
 
     render() {
       return (
-        
         <div id="chart">
             <Chart colors={this.state.colors} options={this.state.options} series={this.state.series} type="radialBar" height={280} />
         </div>

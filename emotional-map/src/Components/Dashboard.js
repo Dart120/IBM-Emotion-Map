@@ -27,7 +27,7 @@ export default function Dashboard(props) {
     const orderedEmotions = () => {
       var toReturn = []
       for(let i = 0; i < 5; i++){
-        toReturn.push(<NumberedList key={"topHashtagsList"+1} number={(i+1) +"."} message={zipped[i][0].slice(0,1).toUpperCase() + zipped[i][0].slice(1) + " - " + zipped[i][1] + "%"}/>)
+        toReturn.push(<NumberedList key={"topHashtagsList"+i} number={(i+1) +"."} message={zipped[i][0].slice(0,1).toUpperCase() + zipped[i][0].slice(1) + " - " + zipped[i][1] + "%"}/>)
       }
       return toReturn;
     } 
