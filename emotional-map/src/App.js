@@ -1,6 +1,7 @@
 
 
 import React from "react";
+import Alert from 'react-bootstrap/Alert';
 import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
@@ -28,9 +29,9 @@ class App extends React.Component {
         confident: 0,
         analytical: 0,
         tentative: 0,
-        hash1: 'Loading...',
-        hash2: 'Loading...',
-        hash3: 'Loading...',
+        trend1: 'Loading...',
+        trend2: 'Loading...',
+        trend3: 'Loading...',
         sample_size: 'Loading...'
       },
 
@@ -43,11 +44,11 @@ class App extends React.Component {
         confident: 0,
         analytical: 0,
         tentative: 0,
-        hash1: 'Loding...',
-        hash2: 'Loding...',
-        hash3: 'Loding...',
-        hash4: 'Loding...',
-        hash5: 'Loding...',
+        trend1: 'Loding...',
+        trend2: 'Loding...',
+        trend3: 'Loding...',
+        trend4: 'Loding...',
+        trend5: 'Loding...',
         happiest1: "Loding...",
         happiest2: "Loding...",
         happiest3: "Loding...",
@@ -55,24 +56,34 @@ class App extends React.Component {
         happiest5: "Loding...",
         sample_size: "Loding..."
       },
+      error: false, // notify server errors 
     }
     this.findRegionData = this.findRegionData.bind(this);
   }
 
   componentDidMount() {
-    // delete code inside and fetch data from localhost
-    let fetchData = () => {
+    let fetchData = async () => {
+      // fetch from "http://127.0.0.1:8020/api/recent" i.e. server
       const URL = "/api/recent"
-      fetch(URL, {
-      })
-        .then(res => res.json())
-        //.then(json => console.log((json.anlysis)));
-        .then(json => this.setState({
-          regionalData : this.findRegionData(json.anlysis, "Manchester"), // this is an example. regionName parameter could be collected from map mouseover? 
-          dashboardData : this.findRegionData(json.anlysis, "United Kingdom"),
-          mapData: false
-        }) 
-        );
+      try {
+        let result = await fetch(URL);
+        if (!result.ok) {
+          throw new Error(`HTTP error - status: ${result.status}`);
+        }
+        else{
+          let json = await result.json();
+          this.setState({
+              regionalData : this.findRegionData(json.anlysis, "Manchester"), // this is an example. regionName parameter could be collected from map mouseover? 
+              dashboardData : this.findRegionData(json.anlysis, "United Kingdom"),
+              mapData: false,
+              error: false
+            });
+        }
+      } catch(error){
+        console.log(error);
+        // set error to true to display error alert
+        this.setState({...this.state, error:true})
+      }
     }
 
     // Carry out an initial fetching of data before interval is set
@@ -80,9 +91,9 @@ class App extends React.Component {
 
     // Fetch data from server every X milliseconds
     this.interval = setInterval(() => {
-      console.log("testing")
+      console.log("Fetched new data")
       fetchData();
-    }, 5000);
+    }, 10000);
   }
   
   componentWillUnmount() {
@@ -90,7 +101,8 @@ class App extends React.Component {
     clearInterval(this.interval);
   }
 
-  
+  // find JSON data relating to the specified region from the
+  // data received from the server.
   findRegionData(json, regionName){
     for(var i = 0; i < json.length; i++) {
       if(json[i].name === regionName){
@@ -106,6 +118,7 @@ class App extends React.Component {
       //   {useIsLarge ? <ComputerView /> : <MobileView />}
       // </div>
       <div className="App">
+        {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container"></div>
@@ -115,7 +128,6 @@ class App extends React.Component {
           <div className="main-dashboard">
             <Dashboard data={this.state.dashboardData}/>
           </div>
-        
         </div>
       </div>
     );
