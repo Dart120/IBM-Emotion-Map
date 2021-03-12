@@ -85,9 +85,9 @@ export default class RegionalDashboard extends Component {
                             </div>
                             <FadeIn>
                             {/* {top3HashtagsList} */}
-                            <TwitterLogoList message={data.hash1} long={true}/>
-                            <TwitterLogoList message={data.hash2} long={true}/>
-                            <TwitterLogoList message={data.hash3} long={true}/>
+                            <TwitterLogoList message={data.trend1} long={true}/>
+                            <TwitterLogoList message={data.trend2} long={true}/>
+                            <TwitterLogoList message={data.trend3} long={true}/>
                             </FadeIn>
                         </div>
 

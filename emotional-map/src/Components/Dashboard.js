@@ -58,11 +58,11 @@ export default function Dashboard(props) {
                 <div className="section_title">Top Trends:</div>
                 <FadeIn delay={200}>
                 {/* {topHashtagsList} */}
-                  <TwitterLogoList key={"topHashtagsList"+1} message={data.hash1}/>
-                  <TwitterLogoList key={"topHashtagsList"+2} message={data.hash2}/>
-                  <TwitterLogoList key={"topHashtagsList"+3} message={data.hash3}/>
-                  <TwitterLogoList key={"topHashtagsList"+4} message={data.hash4}/>
-                  <TwitterLogoList key={"topHashtagsList"+5} message={data.hash5}/>
+                  <TwitterLogoList key={"topHashtagsList"+1} message={data.trend1}/>
+                  <TwitterLogoList key={"topHashtagsList"+2} message={data.trend2}/>
+                  <TwitterLogoList key={"topHashtagsList"+3} message={data.trend3}/>
+                  <TwitterLogoList key={"topHashtagsList"+4} message={data.trend4}/>
+                  <TwitterLogoList key={"topHashtagsList"+5} message={data.trend5}/>
                 </FadeIn>
               </div>
               

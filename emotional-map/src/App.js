@@ -9,95 +9,6 @@ import "./styles.css";
 
 import MapChart from "./MapChart";
 
-// This is temporary until JSON is obtained from API call
-const fetchDummyOutput = [
-  {
-    name: 'United Kingdom',
-    joy: 32.114051139044623,
-    anger: 7.289970789215364,
-    fear: 3.8105977292024447,
-    sadness: 6.219883720353374,
-    confident: 18.725309202150665,
-    analytical: 17.76795795863539,
-    tentative: 15.072229461398134,
-    hash1: '#WandaVision',
-    hash2: '#Pokemon',
-    hash3: '#friday',
-    hash4: '#FridayMotivation',
-    hash5: '#FridayFeeling',
-    happiest1: "Leeds",
-    happiest2: "Manchester",
-    happiest3: "Newcastle",
-    happiest4: "London",
-    happiest5: "Southampton",
-    sample_size: 650
-  },
-
-  {
-    name: 'Newcastle',
-    joy: 31.114051139044623,
-    anger: 7.289970789215364,
-    fear: 3.8105977292024447,
-    sadness: 6.219883720353374,
-    confident: 18.725309202150665,
-    analytical: 17.76795795863539,
-    tentative: 15.072229461398134,
-    hash1: '',
-    hash2: '',
-    hash3: '',
-    sample_size: 65
-  },
-  {
-    name: 'Manchester',
-    joy: 33.9457936894335,
-    anger: 2.079649742749094,
-    fear: 0,
-    sadness: 8.710716808383564,
-    confident: 6.573551509992057,
-    analytical: 15.492030343945443,
-    tentative: 33.19825790549635,
-    hash1: '',
-    hash2: '',
-    hash3: '',
-    sample_size: 49
-  },
-  {
-    name: 'Sheffield',
-    joy: 44.22058154499701,
-    anger: 0,
-    fear: 0,
-    sadness: 7.13702670408339,
-    confident: 8.46864686997051,
-    analytical: 17.265942439019092,
-    tentative: 22.90780244193,
-    hash1: '',
-    hash2: '',
-    hash3: '',
-    sample_size: 62
-  },
-  { time: 1613142768741 }
-]
-
-// This is temporary until JSON is obtained from API call
-const regionalJSONTemplate = {
-  name: 'Newcastle',
-  joy: 31.114051139044623,
-  anger: 7.289970789215364,
-  fear: 3.8105977292024447,
-  sadness: 6.219883720353374,
-  confident: 18.725309202150665,
-  analytical: 17.76795795863539,
-  tentative: 15.072229461398134,
-  hash1: 'trend1',
-  hash2: 'trend2',
-  hash3: 'trend3',
-  sample_size: 65
-}
-
-
-// Currently the data is being passed as props to the components.
-// Will need to change depending on how we fetch data from server.
-
 class App extends React.Component {
   constructor(){
     super();
@@ -145,17 +56,23 @@ class App extends React.Component {
         sample_size: "Loding..."
       },
     }
-    this.findUK = this.findUK.bind(this);
+    this.findRegionData = this.findRegionData.bind(this);
   }
 
   componentDidMount() {
     // delete code inside and fetch data from localhost
     let fetchData = () => {
-      this.setState({
-        regionalData : regionalJSONTemplate,
-        dashboardData : this.findUK(fetchDummyOutput),
-        mapData: false
-      });
+      const URL = "/api/recent"
+      fetch(URL, {
+      })
+        .then(res => res.json())
+        //.then(json => console.log((json.anlysis)));
+        .then(json => this.setState({
+          regionalData : this.findRegionData(json.anlysis, "Manchester"), // this is an example. regionName parameter could be collected from map mouseover? 
+          dashboardData : this.findRegionData(json.anlysis, "United Kingdom"),
+          mapData: false
+        }) 
+        );
     }
 
     // Carry out an initial fetching of data before interval is set
@@ -174,9 +91,9 @@ class App extends React.Component {
   }
 
   
-  findUK(json){
+  findRegionData(json, regionName){
     for(var i = 0; i < json.length; i++) {
-      if(json[i].name === "United Kingdom"){
+      if(json[i].name === regionName){
         return json[i];
       }
     }

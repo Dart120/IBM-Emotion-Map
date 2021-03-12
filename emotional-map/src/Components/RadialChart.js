@@ -102,8 +102,8 @@ export default class RadialChart extends React.Component {
     //  SOLUTION 2
     // update radial chart values and emoji when
     // the component updates
-    componentDidUpdate(previousProps, prevState){
-      if (previousProps.values !== this.props.values) {
+    componentDidUpdate(prevProps, prevState){
+      if (prevProps.values !== this.props.values) {
         this.setState({
           series: this.props.values,
           options: {
