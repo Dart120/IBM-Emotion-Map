@@ -22,15 +22,12 @@
 
 .map-container{
     position:relative;
-
     background: purple;
-
     grid-area: map;
 
   }
 
 .regional-dashboard-container{
-
       grid-area: regional-dashboard-container;
       justify-self: center;
       align-self: center;
@@ -41,4 +38,103 @@
     justify-self: center;
     align-self: center;
 
+}
+
+/* div that contains the colour key located above the main dashboard */
+.colour-key{
+  font-family: Lato;
+  padding: 50px 100px 50px 100px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.red-colour-key{
+  display:inline;
+  color: #FF0000;
+}
+.red-circle{
+  z-index: 1;
+  background: #FF0000;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: 1.0px;
+  
+  margin-right: 10px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+}
+.green-colour-key{
+  display:inline;
+  color: #13E900;
+}
+.green-circle{
+  z-index: 1;
+  background: #13E900;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: 1.0px;
+  
+  margin-right: 10px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+}
+.purple-colour-key{
+  display:inline;
+  color: #B033AB;
+}
+.purple-circle{
+  z-index: 1;
+  background: #B033AB;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: 1.0px;
+  
+  margin-right: 10px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+}
+.orange-colour-key{
+  display:inline;
+  color: #F39800;
+}
+.orange-circle{
+  z-index: 1;
+  background: #F39800;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: 1.0px;
+  
+  margin-right: 10px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+}
+.blue-colour-key{
+  display:inline;
+  color: #00AEEF;
+}
+.blue-circle{
+  z-index: 1;
+  background: #00AEEF;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: 1.0px;
+  
+  margin-right: 10px;
+  float: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
 }

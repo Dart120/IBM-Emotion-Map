@@ -126,6 +126,28 @@ class App extends React.Component {
             <RegionalDashboard data={this.state.regionalData}/>
           </div>
           <div className="main-dashboard">
+            <div className="colour-key">
+              <div className="red-colour-key">
+                <div className="red-circle"/>
+                Fear
+              </div>
+              <div className="green-colour-key">
+                <div className="green-circle"/>
+                  Confident
+              </div>
+              <div className="purple-colour-key">
+                <div className="purple-circle"/>
+                  Anger
+              </div>
+              <div className="orange-colour-key">
+                <div className="orange-circle"/>
+                  Joy
+              </div>
+              <div className="blue-colour-key">
+                <div className="blue-circle"/>
+                  Sadness
+              </div>
+            </div>
             <Dashboard data={this.state.dashboardData}/>
           </div>
         </div>
