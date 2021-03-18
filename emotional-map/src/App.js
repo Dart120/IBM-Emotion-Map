@@ -5,6 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
+import DummyMap from './Components/DummyMap';
 import './main.css'; 
 import "./styles.css";
 
@@ -20,6 +21,8 @@ class App extends React.Component {
     // this.state.regionalData resembles the format of the data passed into
     // the regional dashboard component.
     this.state = {
+      mapData: false,
+
       regionalData: {
         name: 'Loading...',
         joy: 0,
@@ -59,6 +62,7 @@ class App extends React.Component {
       error: false, // notify server errors 
     }
     this.findRegionData = this.findRegionData.bind(this);
+    this.setCurrentRegion = this.setCurrentRegion.bind(this);
   }
 
   componentDidMount() {
@@ -73,16 +77,16 @@ class App extends React.Component {
         else{
           let json = await result.json();
           this.setState({
-              regionalData : this.findRegionData(json.anlysis, "Manchester"), // this is an example. regionName parameter could be collected from map mouseover? 
-              dashboardData : this.findRegionData(json.anlysis, "United Kingdom"),
-              mapData: false,
-              error: false
+              mapData: json.anlysis,
+              regionalData : this.findRegionData(json.anlysis, this.state.current_region), // this is an example. regionName parameter could be collected from map mouseover? 
+              dashboardData : this.findRegionData(json.anlysis, "United Kingdom", true),
+              error:false,
             });
         }
       } catch(error){
-        console.log(error);
+        console.log("Failed to fetch data from the server");
         // set error to true to display error alert
-        this.setState({...this.state, error:true})
+        this.setState({error:true})
       }
     }
 
@@ -103,15 +107,35 @@ class App extends React.Component {
 
   // find JSON data relating to the specified region from the
   // data received from the server.
-  findRegionData(json, regionName){
-    for(var i = 0; i < json.length; i++) {
-      if(json[i].name === regionName){
-        return json[i];
+  // json - json array retrieved from json.anlysis from server
+  // regionName - name of the region to search in the json array
+  // forUK - boolean to alert if function is being used for the UK dashboard
+  findRegionData(json, regionName, forUK=false){
+    // check if mapData has been assigned a value
+    // if not, then that means data hasn't been fetched,
+    // so return initial data template.
+    if ((this.state.mapData) || forUK) {
+      for(var i = 0; i < json.length; i++) {
+        if(json[i].name === regionName){
+          return json[i];
+        }
       }
+    } else{
+        return this.state.regionalData;
     }
   }
 
+  // This function is to be passed into the map component
+  // so that the child map component can change parent
+  // app components state for the regional dashboard
+  setCurrentRegion(regionName){
+    this.setState({
+      regionalData : this.findRegionData(this.state.mapData, regionName),
+    })
+  }
+
   render(){
+    console.log('rerendered')
     return (
       // <div className="page">
       //   <Navbar />
@@ -121,7 +145,10 @@ class App extends React.Component {
         {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
         <div className="main-grid">
           <div className="header"><Navbar /></div>
-          <div className="map-container"></div>
+          <div className="map-container">
+            <DummyMap setCurrentRegion={this.setCurrentRegion}/>
+            <p>{this.state.current_region}</p>
+          </div>
           <div className="regional-dashboard-container">
             <RegionalDashboard data={this.state.regionalData}/>
           </div>
