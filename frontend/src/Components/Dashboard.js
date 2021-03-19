@@ -32,6 +32,7 @@ export default function Dashboard(props) {
       return toReturn;
     } 
     
+    
     return (
         <div className="outer_container">
           <div className="big_container">
@@ -74,7 +75,7 @@ export default function Dashboard(props) {
               </div>
               
               <div className="dial_diagram">
-                  <RadialChart values={valuesList}/>
+                  <RadialChart values={valuesList} colourCode={props.colourCode}/>
               </div>
             </div>
 

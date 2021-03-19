@@ -11,6 +11,8 @@ import sadness_emoji from "../images/1F622.svg";
 export default class RadialChart extends React.Component {
     constructor(props) {
       super(props);
+      
+      const {colourCode} = this.props
 
       this.state = {
         series: this.props.values,
@@ -19,7 +21,7 @@ export default class RadialChart extends React.Component {
             height: 10,
             type: 'radialBar',
           },
-          colors: ['#FF0000','#13E900','#B033AB','#F39800','#00AEEF'],
+          colors: [colourCode.Fear, colourCode.Confident, colourCode.Anger, colourCode.Joy, colourCode.Sadness],//['#FF0000','#13E900','#B033AB','#F39800','#00AEEF'],
           plotOptions: {
             radialBar: {
               dataLabels: {
@@ -143,9 +145,9 @@ export default class RadialChart extends React.Component {
         return return_img;
     }
   
+    
 
     render() {
-      console.log(this.props.values)
       return (
         <div id="chart">
             <Chart colors={this.state.colors} options={this.state.options} series={this.state.series} type="radialBar" height={280} />

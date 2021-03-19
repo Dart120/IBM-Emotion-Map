@@ -153,7 +153,7 @@ class App extends React.Component {
             <DummyMap setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
           </div>
           <div className="regional-dashboard-container">
-            <RegionalDashboard data={this.state.regionalData}/>
+            <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>
           </div>
           <div className="main-dashboard">
             <div className="colour-key">
@@ -178,7 +178,7 @@ class App extends React.Component {
                   Sadness
               </div>
             </div>
-            <Dashboard data={this.state.dashboardData}/>
+            <Dashboard data={this.state.dashboardData} colourCode={colourCode}/>
           </div>
         </div>
       </div>
