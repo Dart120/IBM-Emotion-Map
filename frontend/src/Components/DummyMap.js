@@ -25,6 +25,7 @@ export default class DummyMap extends Component {
                 <p onMouseOver={this.hoverHandler.bind(this, 'Sheffield')}>Sheffield</p>
                 <p onMouseOver={this.hoverHandler.bind(this, 'Leeds')}>Leeds</p>
                 <p onMouseOver={this.hoverHandler.bind(this, 'Glasgow')}>Glasgow</p>
+                <p onMouseOver={this.hoverHandler.bind(this, 'NonExistingCity')}>NonExistingCity</p>
             </div>
         )
     }

@@ -138,3 +138,16 @@
   border-color: black;
   border-width: 0.1px;
 }
+
+/* .intro-modal{
+  z-index: 1;
+  position: absolute;
+  left: 12.36%;
+  right: 13.4%;
+  top: 50%;
+  height: 30%;
+  float: center;
+  background: rgba(29, 33, 37, 0.93);
+  box-shadow: 15.0502px 15.0502px 50.1672px rgba(0, 0, 0, 0.25);
+  border-radius: 28.0936px;
+} */

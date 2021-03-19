@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Alert from 'react-bootstrap/Alert';
 import Navbar from './Components/Navbar'
@@ -14,12 +12,6 @@ import MapChart from "./MapChart";
 class App extends React.Component {
   constructor(){
     super();
-    // NOTE TO TEMI: May need to change how data is being passed into 
-    // regional dashboard depending on how the hover functionality is
-    // implemented. May need to change this.state.regionalData as well
-    // depending on this change.
-    // this.state.regionalData resembles the format of the data passed into
-    // the regional dashboard component.
     this.state = {
       mapData: false,
 
@@ -118,6 +110,11 @@ class App extends React.Component {
         if(json[i].name === regionName){
           return json[i];
         }
+        // If the city doesn't exist in the json data,
+        // return the previous regionalData
+        if(i===json.length-1){
+          return this.state.regionalData;
+        }
       }
     } else{
         return this.state.regionalData;
@@ -128,9 +125,9 @@ class App extends React.Component {
   // so that the child map component can change parent
   // app components state for the regional dashboard
   setCurrentRegion(regionName){
-    this.setState({
-      regionalData : this.findRegionData(this.state.mapData, regionName),
-    })
+    this.setState((prevState) => ({
+      regionalData : this.findRegionData(prevState.mapData, regionName),
+    }))
   }
 
   render(){
