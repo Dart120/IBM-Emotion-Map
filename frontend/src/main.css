@@ -29,14 +29,15 @@
 
 .regional-dashboard-container{
       grid-area: regional-dashboard-container;
-      justify-self: center;
+      margin-left: 100px;
+      justify-self: left;
       align-self: center;
 }
 
 .main-dashboard{
     grid-area: main-dashboard;
     justify-self: center;
-    align-self: center;
+
 
 }
 
