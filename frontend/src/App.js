@@ -131,7 +131,15 @@ class App extends React.Component {
   }
 
   render(){
-    console.log('rerendered')
+
+    const colourCode = {
+      "Fear": "#C81B25",
+      "Confident": "#3DC81B",
+      "Anger": '#B033AB',
+      "Joy": "F39800",
+      "Sadness": "#00AEEF",
+    }
+
     return (
       // <div className="page">
       //   <Navbar />
@@ -142,8 +150,7 @@ class App extends React.Component {
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
-            <DummyMap setCurrentRegion={this.setCurrentRegion}/>
-
+            <DummyMap setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
           </div>
           <div className="regional-dashboard-container">
             <RegionalDashboard data={this.state.regionalData}/>

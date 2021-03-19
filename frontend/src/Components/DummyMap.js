@@ -16,7 +16,6 @@ export default class DummyMap extends Component {
     
 
     render() {
-        //this.hoverHandler('Manchester');
         
         return (
             <div>
