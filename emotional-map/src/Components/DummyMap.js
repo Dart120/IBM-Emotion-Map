@@ -12,7 +12,6 @@ export default class DummyMap extends Component {
 
     hoverHandler(region){
         this.props.setCurrentRegion(region)
-        console.log(region,'look')
     }
     
 

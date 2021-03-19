@@ -78,7 +78,6 @@ class App extends React.Component {
           let json = await result.json();
           this.setState({
               mapData: json.anlysis,
-              regionalData : this.findRegionData(json.anlysis, this.state.current_region), // this is an example. regionName parameter could be collected from map mouseover? 
               dashboardData : this.findRegionData(json.anlysis, "United Kingdom", true),
               error:false,
             });
@@ -147,7 +146,7 @@ class App extends React.Component {
           <div className="header"><Navbar /></div>
           <div className="map-container">
             <DummyMap setCurrentRegion={this.setCurrentRegion}/>
-            <p>{this.state.current_region}</p>
+
           </div>
           <div className="regional-dashboard-container">
             <RegionalDashboard data={this.state.regionalData}/>
