@@ -136,7 +136,7 @@ class App extends React.Component {
       "Fear": "#C81B25",
       "Confident": "#3DC81B",
       "Anger": '#B033AB',
-      "Joy": "F39800",
+      "Joy": "#F39800",
       "Sadness": "#00AEEF",
     }
 
