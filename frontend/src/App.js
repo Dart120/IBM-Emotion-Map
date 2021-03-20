@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
 import Map from './Components/Map';
+import DummyMap from './Components/DummyMap';
 import './main.css'; 
 import "./styles.css";
 
