@@ -1,0 +1,121 @@
+
+.float_right{
+    float:right;
+}
+
+.regional_container {
+  
+    padding: 24px;
+    /* position: absolute; */
+    left: 66.81%;
+    
+    top: 19.72%;
+    bottom: 41.32%;
+
+    height: 561px;
+    width: 286px;
+
+    background: #1D2125;
+    box-shadow: 15.0502px 15.0502px 50.1672px rgba(0, 0, 0, 0.25);
+    border-radius: 28.0936px;
+
+  }
+
+.region-title{
+    float:left;
+    width: 50%;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 58px;
+    color: #FFFFFF;
+    align-self: center;
+  }
+
+/* div to render the emoji in */
+.emoji-div{
+    float:right;
+    width: 40%;
+    text-align: right;
+}
+
+/* white line under the region title heading */
+.line{
+    /* clear:both used to ignore float above and 
+    go back to normal */
+    clear:both; 
+    position: relative;
+  
+    border: 1.00334px solid #FFFFFF;
+    width: 179px;
+}
+
+.regional-top-hashtags{
+    height:170px;
+    padding-top: 10%;
+}
+
+
+.emotional-breakdown{
+    padding-top: 7%;
+    height: 250px;
+
+}
+
+.red-progress-bar .progress-bar{
+    height: 100%;
+    background-color:  #C81B25;
+    border: 1px solid #FFFFFF;
+    border-radius: 19.5px;
+    text-align: right;
+    padding-right: 5px;
+    
+}
+.green-progress-bar .progress-bar{
+    height: 100%;
+    background-color:  #3DC81B;
+    border: 1px solid #FFFFFF;
+    border-radius: 19.5px;
+    text-align: right;
+    padding-right: 5px;
+    
+}
+.purple-progress-bar .progress-bar{
+    height: 100%;
+    background-color:  #B033AB;
+    border: 1px solid #FFFFFF;
+    border-radius: 19.5px;
+    text-align: right;
+    padding-right: 5px;
+    
+}
+.orange-progress-bar .progress-bar{
+    height: 100%;
+    background-color:  #F39800;
+    border: 1px solid #FFFFFF;
+    border-radius: 19.5px;
+    text-align: right;
+    padding-right: 5px;
+    
+}
+.blue-progress-bar .progress-bar{
+    height: 100%;
+    background-color:  #00AEEF;
+    border: 1px solid #FFFFFF;
+    border-radius: 19.5px;
+    text-align: right;
+    padding-right: 5px;
+    
+}
+
+.progress_bar_container{
+    height: 50px;
+}
+
+.sample-size{
+    text-align: center;
+    font-family: Lato;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
