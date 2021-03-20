@@ -9,6 +9,7 @@ function Map(props) {
   const [colours,setColours] = useState({})
   const mapData = props.mapData
   const colourCode = props.colourCode
+  console.log(props)
   useEffect(() => {
     function calcColour(regionData) {
       let max = 0
@@ -28,18 +29,18 @@ function Map(props) {
   
       
    
-    <ComposableMap style={{width: "100%", height: "100vh", backgroundColor: "white"}}  projectionConfig = {{center:[-2, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 3000}}>
-      <ZoomableGroup zoom={1}>
+    <ComposableMap style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-2, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 3000}}>
+      
     <Geographies geography={datum}>
     
       {
-       ({ geographies }) => {
+       ({ geographies }) => 
         geographies
-        .forEach((geo,index) => {
+        .map((geo,index) => {
             return(
               <>
-              <Region geo = {geo} colour = {colours[geo.properties.name]}></Region>
-              <Geography  name = {geo.properties.name} fill={(index < 20) ? "#FF0000" : "#ffffff"} stroke='black' key={index} geography={geo} />
+              <Region setCurrentRegion = {props.setCurrentRegion} geo = {geo} colour = {colours[geo.properties.name]}></Region>
+              
               </>
                 )
             
@@ -49,12 +50,12 @@ function Map(props) {
         
       )
       
-        }
+        
         
       }
       
     </Geographies>
-    </ZoomableGroup>
+   
   </ComposableMap>
     
         

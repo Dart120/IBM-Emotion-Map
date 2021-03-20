@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert';
 import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
-import DummyMap from './Components/DummyMap';
+import Map from './Components/Map';
 import './main.css'; 
 import "./styles.css";
 
@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      mapData: false,
+      mapData: [],
 
       regionalData: {
         name: 'Loading...',
@@ -141,16 +141,12 @@ class App extends React.Component {
     }
 
     return (
-      // <div className="page">
-      //   <Navbar />
-      //   {useIsLarge ? <ComputerView /> : <MobileView />}
-      // </div>
       <div className="App">
         {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
-            <DummyMap setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
+            <Map mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
           </div>
           <div className="regional-dashboard-container">
             <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>
