@@ -12,7 +12,7 @@
     top: 19.72%;
     bottom: 41.32%;
 
-   
+    min-height: 561px;
     width: 286px;
 
     background: #1D2125;
@@ -28,7 +28,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
-    line-height: 40px;
+    line-height: 1.5;
     color: #FFFFFF;
     align-self: center;
   }
