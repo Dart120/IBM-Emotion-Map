@@ -10,24 +10,28 @@ function Map(props) {
   const [clicked,setClicked] = useState('')
   const mapData = props.mapData
   const colourCode = props.colourCode
-  console.log(props)
+  console.log(mapData.filter(region => region.name === 'Oxford'))
   useEffect(() => {
     function calcColour(regionData) {
       let max = 0
-      let colour = ''
+      let colour = 'pink'
       for (let key in colourCode){
-        if (regionData[key] > max){
+        if (regionData[key.toLowerCase()] > max){
           colour = colourCode[key]
+          max = regionData[key.toLowerCase()]
         }
-      return colour
       }
+      return colour
     }
-    mapData.forEach((regionData) => setColours({
-      ...colours,
+    mapData.forEach((regionData) => {
+      setColours(colours => ({
+     ...colours,
        [regionData.name] : calcColour(regionData)}))
-  },[mapData,colourCode])
+    })
+    
+  },[mapData, colourCode])
   return (
-    <ComposableMap style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-2, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 3000}}>
+    <ComposableMap style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-3, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 6000}}>
     <Geographies geography={datum}>
       {
        ({ geographies }) => 

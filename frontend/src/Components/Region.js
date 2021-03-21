@@ -17,6 +17,7 @@ function Region(props) {
     function handleClick(){
         props.setClicked(rsmKey)
         setCurrentRegion(name)
+        console.log({name, rsmKey, colour})
         
     }
     function handleHover(){
@@ -25,7 +26,7 @@ function Region(props) {
     function handleNoHover(){
         setStrokeColour('black')
     }
-
+   
     return (
         <Geography onClick = {() => handleClick()} onMouseEnter = {() => handleHover()} onMouseLeave = {() => handleNoHover()} fill={colour} strokeWidth={strokeWidth} stroke={strokeColour} key={rsmKey} geography={geo} />
     )

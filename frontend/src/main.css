@@ -7,8 +7,8 @@
     height: 100vw;
     grid-template-areas:
       "header header header"
-      "map map regional-dashboard-container "
-      "map map regional-dashboard-container "
+      ". map regional-dashboard-container "
+      
       "main-dashboard main-dashboard main-dashboard";
 }
 
@@ -22,9 +22,9 @@
 
 .map-container{
     position:relative;
-    background: purple;
+   
     grid-area: map;
-
+    height:90vh;
   }
 
 .regional-dashboard-container{
