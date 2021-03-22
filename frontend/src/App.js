@@ -53,9 +53,11 @@ class App extends React.Component {
         sample_size: "Loding..."
       },
       error: false, // notify server errors 
+      modalClosed: false,
     }
     this.findRegionData = this.findRegionData.bind(this);
     this.setCurrentRegion = this.setCurrentRegion.bind(this);
+    this.closeModal = this.closeModal.bind(this)
   }
 
   componentDidMount() {
@@ -131,6 +133,11 @@ class App extends React.Component {
     }))
   }
 
+  closeModal(){
+    console.log("clicked")
+    this.setState({modalClosed: true})
+  }
+
   render(){
 
     const colourCode = {
@@ -144,13 +151,28 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
+        {!this.state.modalClosed &&
+        <div className="modal-container">
+        <div className="intro-modal">
+          <div className="modal-title">IBM Emotional Map</div>
+          <div className="modal-text">
+            <p>This product was made to show off the capabilities of the Watson Tone Analyser made by IBM.</p>
+            <p>Click on a region in the map to see it's current sentimental breakdown.</p>
+          </div>
+          <div className="close-button" onClick={() => this.closeModal()} onMouseEnter={this.style = {"color": "blue"}}>Close</div>
+        </div>
+        </div>
+      }
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
             <Map mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
           </div>
+          
           <div className="regional-dashboard-container">
+          {this.state.modalClosed &&
             <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>
+          }
           </div>
           <div className="main-dashboard">
             <div className="colour-key">
