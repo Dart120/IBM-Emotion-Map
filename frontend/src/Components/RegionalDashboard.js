@@ -15,8 +15,24 @@ import sadness_emoji from "../images/1F622.svg";
 export default class RegionalDashboard extends Component {
     
     render() {
-        const {data} = this.props;
-
+        let {data} = this.props;
+        // prevent crashing if data hasn't been loaded in
+        if(!data){
+            data = {
+                name: 'Loading...',
+                joy: 0,
+                anger: 0,
+                fear: 0,
+                sadness: 0,
+                confident: 0,
+                analytical: 0,
+                tentative: 0,
+                trend1: 'Loading...',
+                trend2: 'Loading...',
+                trend3: 'Loading...',
+                sample_size: 'Loading...'
+              }
+        }
         const check = () =>{
             const arr = [];
             arr[0] = data.fear;
