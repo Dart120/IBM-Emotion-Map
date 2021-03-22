@@ -154,24 +154,24 @@ class App extends React.Component {
           </div>
           <div className="main-dashboard">
             <div className="colour-key">
-              <div className="red-colour-key">
-                <div className="red-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Fear}}>
+                <div className="coloured-circle" style={{"background": colourCode.Fear}}/>
                 Fear
               </div>
-              <div className="green-colour-key">
-                <div className="green-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Confident}}>
+                <div className="coloured-circle" style={{"background": colourCode.Confident}}/>
                   Confident
               </div>
-              <div className="purple-colour-key">
-                <div className="purple-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Anger}}>
+                <div className="coloured-circle" style={{"background": colourCode.Anger}}/>
                   Anger
               </div>
-              <div className="orange-colour-key">
-                <div className="orange-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Joy}}>
+                <div className="coloured-circle" style={{"background": colourCode.Joy}}/>
                   Joy
               </div>
-              <div className="blue-colour-key">
-                <div className="blue-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Sadness}}>
+                <div className="coloured-circle" style={{"background": colourCode.Sadness}}/>
                   Sadness
               </div>
             </div>
