@@ -63,51 +63,15 @@
 
 }
 
-.red-progress-bar .progress-bar{
+.styled-progress-bar .progress-bar{
     height: 100%;
-    background-color:  #C81B25;
     border: 1px solid #FFFFFF;
     border-radius: 19.5px;
     text-align: right;
     padding-right: 5px;
     
 }
-.green-progress-bar .progress-bar{
-    height: 100%;
-    background-color:  #3DC81B;
-    border: 1px solid #FFFFFF;
-    border-radius: 19.5px;
-    text-align: right;
-    padding-right: 5px;
-    
-}
-.purple-progress-bar .progress-bar{
-    height: 100%;
-    background-color:  #B033AB;
-    border: 1px solid #FFFFFF;
-    border-radius: 19.5px;
-    text-align: right;
-    padding-right: 5px;
-    
-}
-.orange-progress-bar .progress-bar{
-    height: 100%;
-    background-color:  #F39800;
-    border: 1px solid #FFFFFF;
-    border-radius: 19.5px;
-    text-align: right;
-    padding-right: 5px;
-    
-}
-.blue-progress-bar .progress-bar{
-    height: 100%;
-    background-color:  #00AEEF;
-    border: 1px solid #FFFFFF;
-    border-radius: 19.5px;
-    text-align: right;
-    padding-right: 5px;
-    
-}
+
 
 .progress_bar_container{
     height: 50px;
