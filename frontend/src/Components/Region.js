@@ -1,6 +1,8 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,memo} from "react";
 import "../index.css";
 import { Geography } from "react-simple-maps";
+import Tooltip from '@material-ui/core/Tooltip';
+import GeogRefs from './GeogRef';
 
 function Region(props) {
     const [strokeColour, setStrokeColour] = useState('black')
@@ -13,25 +15,35 @@ function Region(props) {
         }else{
             setStrokeWidth('3px')
         }
-    }, [props.clicked]);
+    }, [props.clicked, rsmKey]);
     function handleClick(){
         props.setClicked(rsmKey)
-        setCurrentRegion(name)
-        console.log({name, rsmKey, colour})
-        
+        setCurrentRegion(name)  
     }
     function handleHover(){
         setStrokeColour('#00AEEF')
+        props.setTooltipContent(name)
     }
     function handleNoHover(){
         setStrokeColour('black')
+        props.setTooltipContent('')
     }
    
     return (
-        <Geography onClick = {() => handleClick()} onMouseEnter = {() => handleHover()} onMouseLeave = {() => handleNoHover()} fill={colour} strokeWidth={strokeWidth} stroke={strokeColour} key={rsmKey} geography={geo} />
+        <>
+        
+            
+        <Geography  onMouseEnter={() => handleHover()} onMouseLeave = {() => handleNoHover()} onClick={() => handleClick()} fill={colour} strokeWidth={strokeWidth} stroke={strokeColour} key={rsmKey} geography={geo} />
+
+            
+      
+
+       
+        
+        </>
     )
     
 };
   
-export default Region;
+export default memo(Region);
   

@@ -5,6 +5,7 @@ import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
 import Map from './Components/Map';
 import DummyMap from './Components/DummyMap';
+import ReactTooltip from "react-tooltip";
 import './main.css'; 
 import "./styles.css";
 
@@ -15,7 +16,7 @@ class App extends React.Component {
     super();
     this.state = {
       mapData: [],
-
+      content:'',
       regionalData: {
         name: 'Loading...',
         joy: 0,
@@ -131,6 +132,11 @@ class App extends React.Component {
     }))
   }
 
+  updateTooltip = (content) => {
+    console.log(this)
+    this.setState({content});
+  }
+
   render(){
 
     const colourCode = {
@@ -147,7 +153,8 @@ class App extends React.Component {
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
-            <Map mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
+            <Map setTooltipContent={this.updateTooltip} mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
+            <ReactTooltip>{this.state.content}</ReactTooltip>
           </div>
           <div className="regional-dashboard-container">
             <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>

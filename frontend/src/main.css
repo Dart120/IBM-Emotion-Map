@@ -8,7 +8,6 @@
     grid-template-areas:
       "header header header"
       ". map regional-dashboard-container "
-      
       "main-dashboard main-dashboard main-dashboard";
 }
 

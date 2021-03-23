@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, memo} from "react";
 import "../index.css";
 import { ComposableMap, Geographies} from "react-simple-maps";
 import datum from '../output1.json'
@@ -10,11 +10,10 @@ function Map(props) {
   const [clicked,setClicked] = useState('')
   const mapData = props.mapData
   const colourCode = props.colourCode
-  console.log(mapData.filter(region => region.name === 'Oxford'))
   useEffect(() => {
     function calcColour(regionData) {
       let max = 0
-      let colour = 'pink'
+      let colour = 'gray'
       for (let key in colourCode){
         if (regionData[key.toLowerCase()] > max){
           colour = colourCode[key]
@@ -31,7 +30,7 @@ function Map(props) {
     
   },[mapData, colourCode])
   return (
-    <ComposableMap style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-3, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 6000}}>
+    <ComposableMap data-tip="" style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-3, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 6000}}>
     <Geographies geography={datum}>
       {
        ({ geographies }) => 
@@ -39,7 +38,7 @@ function Map(props) {
         .map((geo,index) => {
             return(
               <>
-              <Region setClicked = {setClicked} clicked = {clicked} setCurrentRegion = {props.setCurrentRegion} geo = {geo} colour = {colours[geo.properties.name]}></Region>
+              <Region setTooltipContent={props.setTooltipContent}  setClicked = {setClicked} clicked = {clicked} setCurrentRegion = {props.setCurrentRegion} geo = {geo} colour = {colours[geo.properties.name]}></Region>
               </>
                 )
           }
@@ -50,4 +49,4 @@ function Map(props) {
   );
 }
 
-export default Map;
+export default memo(Map);
