@@ -54,9 +54,11 @@ class App extends React.Component {
         sample_size: "Loding..."
       },
       error: false, // notify server errors 
+      modalClosed: false,
     }
     this.findRegionData = this.findRegionData.bind(this);
     this.setCurrentRegion = this.setCurrentRegion.bind(this);
+    this.closeModal = this.closeModal.bind(this)
   }
 
   componentDidMount() {
@@ -136,6 +138,10 @@ class App extends React.Component {
     console.log(this)
     this.setState({content});
   }
+  closeModal(){
+    console.log("clicked")
+    this.setState({modalClosed: true})
+  }
 
   render(){
 
@@ -150,35 +156,50 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
+        {!this.state.modalClosed &&
+        <div className="modal-container">
+        <div className="intro-modal">
+          <div className="modal-title">IBM Emotional Map</div>
+          <div className="modal-text">
+            <p>This product was made to show off the capabilities of the Watson Tone Analyser made by IBM.</p>
+            <p>Click on a region in the map to see it's current sentimental breakdown.</p>
+          </div>
+          <div className="close-button" onClick={() => this.closeModal()} onMouseEnter={this.style = {"color": "blue"}}>Close</div>
+        </div>
+        </div>
+      }
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
             <Map setTooltipContent={this.updateTooltip} mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
             <ReactTooltip>{this.state.content}</ReactTooltip>
           </div>
+          
           <div className="regional-dashboard-container">
+          {this.state.modalClosed &&
             <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>
+          }
           </div>
           <div className="main-dashboard">
             <div className="colour-key">
-              <div className="red-colour-key">
-                <div className="red-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Fear}}>
+                <div className="coloured-circle" style={{"background": colourCode.Fear}}/>
                 Fear
               </div>
-              <div className="green-colour-key">
-                <div className="green-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Confident}}>
+                <div className="coloured-circle" style={{"background": colourCode.Confident}}/>
                   Confident
               </div>
-              <div className="purple-colour-key">
-                <div className="purple-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Anger}}>
+                <div className="coloured-circle" style={{"background": colourCode.Anger}}/>
                   Anger
               </div>
-              <div className="orange-colour-key">
-                <div className="orange-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Joy}}>
+                <div className="coloured-circle" style={{"background": colourCode.Joy}}/>
                   Joy
               </div>
-              <div className="blue-colour-key">
-                <div className="blue-circle"/>
+              <div className="coloured-colour-key" style={{"color": colourCode.Sadness}}>
+                <div className="coloured-circle" style={{"background": colourCode.Sadness}}/>
                   Sadness
               </div>
             </div>
