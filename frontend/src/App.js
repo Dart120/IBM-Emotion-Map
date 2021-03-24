@@ -5,6 +5,8 @@ import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
 import Map from './Components/Map';
 import ReactTooltip from "react-tooltip";
+import Settings from './Components/Settings.js'
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import './main.css'; 
 import "./styles.css";
 
@@ -146,6 +148,7 @@ class App extends React.Component {
  
 
     return (
+      
       <ColourContext.Consumer>
     {colours => (
       <div className="App">
@@ -156,14 +159,23 @@ class App extends React.Component {
           <div className="modal-title">IBM Emotional Map</div>
           <div className="modal-text">
             <p>This product was made to show off the capabilities of the Watson Tone Analyser made by IBM.</p>
-            <p>Click on a region in the map to see it's current sentimental breakdown.</p>
+            <p>Click on a region in the map to see its current sentimental breakdown.</p>
           </div>
           <div className="close-button" onClick={() => this.closeModal()} onMouseEnter={this.style = {"color": "blue"}}>Close</div>
         </div>
         </div>
       }
         <div className="main-grid">
+          
+        <Router>
+          
           <div className="header"><Navbar /></div>
+          
+        <Switch>
+        <Route exact path="/">
+        <div className="helper">
+            <h3 style={{margin: ' auto auto'}}>Click on the Map!</h3>
+          </div>
           <div className="map-container">
             <Map setTooltipContent={this.updateTooltip} mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} />
             <ReactTooltip>{this.state.content}</ReactTooltip>
@@ -199,11 +211,19 @@ class App extends React.Component {
             </div>
             <Dashboard data={this.state.dashboardData} colourCode={colours}/>
           </div>
+          </Route>
+        <Route path="/settings">
+          <Settings></Settings>
+          </Route>
+          </Switch>
+        </Router>
         </div>
+        
       </div>
     )
         }
         </ColourContext.Consumer>
+        
     );
 }
 }

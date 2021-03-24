@@ -1,6 +1,7 @@
 import React from "react";
 import "../index.css";
 import ColourChanger from "./ColourChanger"
+
 function Settings(){
     return(
         <div className="page">
@@ -8,3 +9,5 @@ function Settings(){
         </div>
     )
 }
+
+export default Settings

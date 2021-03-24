@@ -1,7 +1,7 @@
 import React, {useState, useEffect, memo} from "react";
 import "../index.css";
 import { ComposableMap, Geographies} from "react-simple-maps";
-import datum from '../output1.json'
+import datum from '../regions.json'
 import Region from './Region'
 import {useColour, useColourUpdate} from './ColourContext'
 
@@ -30,7 +30,7 @@ function Map(props) {
     
   },[mapData, colourCode])
   return (
-    <ComposableMap data-tip="" style={{width: "100%", height: "100vh"}}  projectionConfig = {{center:[-3, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 6000}}>
+    <ComposableMap data-tip="" style={{width: "100%", height: "90vh"}}  projectionConfig = {{center:[-3, 55.4],rotation:[4.4,0,0],parallels:[50,60],scale: 6000}}>
     <Geographies geography={datum}>
       {
        ({ geographies }) => 

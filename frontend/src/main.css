@@ -1,4 +1,5 @@
 /* css grid for structuring all the components on the page */
+
 .main-grid{
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -7,11 +8,21 @@
     height: 100vw;
     grid-template-areas:
       "header header header"
-      ". map regional-dashboard-container "
+      "helper map regional-dashboard-container "
       "main-dashboard main-dashboard main-dashboard";
 }
 
+.helper{
+  grid-area:helper;
+  display: flex;
+  margin: 3em;
+  background-color: rgba(29, 33, 37, 0.98);
+  height: 15%;
+  width: 60%;
+  border-radius: 40px;
+  color: white;
 
+}
 .header{
     background: green;
     grid-area: header;

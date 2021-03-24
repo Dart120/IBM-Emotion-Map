@@ -9,9 +9,7 @@ import ColourProvider from './Components/ColourContext'
 ReactDOM.render(
   <React.StrictMode>
     <ColourProvider>
-    
     <App/>
- 
     </ColourProvider>
   </React.StrictMode>,
   document.getElementById('root')
