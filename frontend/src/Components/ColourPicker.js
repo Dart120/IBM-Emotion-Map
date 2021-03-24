@@ -37,7 +37,7 @@ function ColourPicker(props) {
         },
       });
     
-    
+    //on click display colour picker hide when done and update colour state when colour chosen
     const handleClick = () => {
         setDisplayColorPicker(!displayColorPicker)
       };

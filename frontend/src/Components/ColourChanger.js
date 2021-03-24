@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import "../settings.css";
 import {useColour} from './ColourContext'
 import SettingsRow from "./SettingsRow"
 import {Link} from 'react-router-dom'
 function ColourChanger(props){
+    // from colour context
     let colours = useColour()
 
     return(
@@ -11,6 +12,7 @@ function ColourChanger(props){
             <h1 className="settings-title">Settings</h1>
             <div className="colour-changers">
             {
+                // map colours to rows
             Object.entries(colours).map(([emotion,colour])=> <SettingsRow key={emotion} colour={colour} emotion = {emotion}/>)
             }
             <div className="done-container">

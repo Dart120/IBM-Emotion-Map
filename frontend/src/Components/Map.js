@@ -3,7 +3,7 @@ import "../index.css";
 import { ComposableMap, Geographies} from "react-simple-maps";
 import datum from '../regions.json'
 import Region from './Region'
-import {useColour, useColourUpdate} from './ColourContext'
+import {useColour} from './ColourContext'
 
 function Map(props) {
   const [colours,setColours] = useState({})
@@ -11,6 +11,7 @@ function Map(props) {
   const mapData = props.mapData
   const colourCode = useColour()
   useEffect(() => {
+    //figures out what region needs what colour
     function calcColour(regionData) {
       let max = 0
       let colour = 'gray'
@@ -48,5 +49,5 @@ function Map(props) {
   </ComposableMap>      
   );
 }
-
+//avoid rerenders when props havent changed
 export default memo(Map);

@@ -1,9 +1,6 @@
 import React, {useState,useEffect,memo} from "react";
 import "../index.css";
 import { Geography } from "react-simple-maps";
-import Tooltip from '@material-ui/core/Tooltip';
-import GeogRefs from './GeogRef';
-
 function Region(props) {
     const [strokeColour, setStrokeColour] = useState('black')
     const [strokeWidth, setStrokeWidth] = useState('3px')
