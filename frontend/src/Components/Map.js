@@ -3,13 +3,13 @@ import "../index.css";
 import { ComposableMap, Geographies} from "react-simple-maps";
 import datum from '../output1.json'
 import Region from './Region'
-
+import {useColour, useColourUpdate} from './ColourContext'
 
 function Map(props) {
   const [colours,setColours] = useState({})
   const [clicked,setClicked] = useState('')
   const mapData = props.mapData
-  const colourCode = props.colourCode
+  const colourCode = useColour()
   useEffect(() => {
     function calcColour(regionData) {
       let max = 0

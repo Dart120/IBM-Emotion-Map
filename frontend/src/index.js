@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ColourProvider from './Components/ColourContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ColourProvider>
+    
+    <App/>
+ 
+    </ColourProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

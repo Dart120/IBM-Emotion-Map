@@ -4,13 +4,11 @@ import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard';
 import RegionalDashboard from './Components/RegionalDashboard';
 import Map from './Components/Map';
-import DummyMap from './Components/DummyMap';
 import ReactTooltip from "react-tooltip";
 import './main.css'; 
 import "./styles.css";
 
-import MapChart from "./MapChart";
-
+import {ColourContext} from './Components/ColourContext'
 class App extends React.Component {
   constructor(){
     super();
@@ -41,17 +39,17 @@ class App extends React.Component {
         confident: 0,
         analytical: 0,
         tentative: 0,
-        trend1: 'Loding...',
-        trend2: 'Loding...',
-        trend3: 'Loding...',
-        trend4: 'Loding...',
-        trend5: 'Loding...',
-        happiest1: "Loding...",
-        happiest2: "Loding...",
-        happiest3: "Loding...",
-        happiest4: "Loding...",
-        happiest5: "Loding...",
-        sample_size: "Loding..."
+        trend1: 'Loading...',
+        trend2: 'Loading...',
+        trend3: 'Loading...',
+        trend4: 'Loading...',
+        trend5: 'Loading...',
+        happiest1: "Loading...",
+        happiest2: "Loading...",
+        happiest3: "Loading...",
+        happiest4: "Loading...",
+        happiest5: "Loading...",
+        sample_size: "Loading..."
       },
       error: false, // notify server errors 
       modalClosed: false,
@@ -62,6 +60,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    
     let fetchData = async () => {
       // fetch from "http://127.0.0.1:8020/api/recent" i.e. server
       const URL = "/api/recent"
@@ -135,7 +134,6 @@ class App extends React.Component {
   }
 
   updateTooltip = (content) => {
-    console.log(this)
     this.setState({content});
   }
   closeModal(){
@@ -145,15 +143,11 @@ class App extends React.Component {
 
   render(){
 
-    const colourCode = {
-      "Fear": "#C81B25",
-      "Confident": "#3DC81B",
-      "Anger": '#B033AB',
-      "Joy": "#F39800",
-      "Sadness": "#00AEEF",
-    }
+ 
 
     return (
+      <ColourContext.Consumer>
+    {colours => (
       <div className="App">
         {this.state.error && <Alert variant="danger">Failed to fetch data from server</Alert>}
         {!this.state.modalClosed &&
@@ -171,42 +165,45 @@ class App extends React.Component {
         <div className="main-grid">
           <div className="header"><Navbar /></div>
           <div className="map-container">
-            <Map setTooltipContent={this.updateTooltip} mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} colourCode={colourCode}/>
+            <Map setTooltipContent={this.updateTooltip} mapData = {this.state.mapData} setCurrentRegion={this.setCurrentRegion} />
             <ReactTooltip>{this.state.content}</ReactTooltip>
           </div>
           
           <div className="regional-dashboard-container">
           {this.state.modalClosed &&
-            <RegionalDashboard data={this.state.regionalData} colourCode={colourCode}/>
+            <RegionalDashboard data={this.state.regionalData} colourCode={colours}/>
           }
           </div>
           <div className="main-dashboard">
             <div className="colour-key">
-              <div className="coloured-colour-key" style={{"color": colourCode.Fear}}>
-                <div className="coloured-circle" style={{"background": colourCode.Fear}}/>
+              <div className="coloured-colour-key" style={{"color": colours.Fear}}>
+                <div className="coloured-circle" style={{"background": colours.Fear}}/>
                 Fear
               </div>
-              <div className="coloured-colour-key" style={{"color": colourCode.Confident}}>
-                <div className="coloured-circle" style={{"background": colourCode.Confident}}/>
+              <div className="coloured-colour-key" style={{"color": colours.Confident}}>
+                <div className="coloured-circle" style={{"background": colours.Confident}}/>
                   Confident
               </div>
-              <div className="coloured-colour-key" style={{"color": colourCode.Anger}}>
-                <div className="coloured-circle" style={{"background": colourCode.Anger}}/>
+              <div className="coloured-colour-key" style={{"color": colours.Anger}}>
+                <div className="coloured-circle" style={{"background": colours.Anger}}/>
                   Anger
               </div>
-              <div className="coloured-colour-key" style={{"color": colourCode.Joy}}>
-                <div className="coloured-circle" style={{"background": colourCode.Joy}}/>
+              <div className="coloured-colour-key" style={{"color": colours.Joy}}>
+                <div className="coloured-circle" style={{"background": colours.Joy}}/>
                   Joy
               </div>
-              <div className="coloured-colour-key" style={{"color": colourCode.Sadness}}>
-                <div className="coloured-circle" style={{"background": colourCode.Sadness}}/>
+              <div className="coloured-colour-key" style={{"color": colours.Sadness}}>
+                <div className="coloured-circle" style={{"background": colours.Sadness}}/>
                   Sadness
               </div>
             </div>
-            <Dashboard data={this.state.dashboardData} colourCode={colourCode}/>
+            <Dashboard data={this.state.dashboardData} colourCode={colours}/>
           </div>
         </div>
       </div>
+    )
+        }
+        </ColourContext.Consumer>
     );
 }
 }

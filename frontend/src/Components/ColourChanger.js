@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import "../index.css";
-
+import {useColour, useColourUpdate} from './ColourContext'
 function ColourChanger(props){
-    const [colors, setColours] = useState({})
+    
 
 
 
