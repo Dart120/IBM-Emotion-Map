@@ -108,7 +108,6 @@ export default class RegionalDashboard extends Component {
                                 Top Trends
                             </div>
                             <FadeIn>
-                            {/* {top3HashtagsList} */}
                             <TwitterLogoList message={data.trend1} long={true}/>
                             <TwitterLogoList message={data.trend2} long={true}/>
                             <TwitterLogoList message={data.trend3} long={true}/>
