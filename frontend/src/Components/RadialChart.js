@@ -21,7 +21,7 @@ export default class RadialChart extends React.Component {
             height: 10,
             type: 'radialBar',
           },
-          colors: [colourCode.Fear, colourCode.Confident, colourCode.Anger, colourCode.Joy, colourCode.Sadness],//['#FF0000','#13E900','#B033AB','#F39800','#00AEEF'],
+          colors: [colourCode.Fear, colourCode.Confident, colourCode.Anger, colourCode.Joy, colourCode.Sadness],
           plotOptions: {
             radialBar: {
               dataLabels: {
@@ -78,32 +78,9 @@ export default class RadialChart extends React.Component {
           labels: ['Fear', 'Confident', 'anger', 'Joy', 'Sadness'],
         },
       };
-      
-      this.check = this.check.bind(this);
+
     }
 
-    //  SOLUTION 1
-    // componentDidMount() {
-    //   this.interval = setTimeout(() => {
-    //     this.setState(prevState => ({
-    //       series: this.props.values,
-    //       options: {
-    //         ...prevState,
-    //         plotOptions : {
-    //           radialBar: {
-    //             hollow: {
-    //               image: this.check()
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }))
-    //   }, 600);
-    // }
-
-    //  SOLUTION 2
-    // update radial chart values and emoji when
-    // the component updates
     componentDidUpdate(prevProps, prevState){
       if (prevProps.values !== this.props.values) {
         this.setState({
@@ -122,10 +99,11 @@ export default class RadialChart extends React.Component {
     }
     }
 
-    check() {
+    check = () => {
         const arr = this.props.values;
         const indexOfMaxValue = arr.indexOf(Math.max(...arr));
         var return_img = undefined;
+        // decide the return emoji using the index of the max percentage 
         switch(indexOfMaxValue){
             case 0:
                 return_img = fear_emoji;

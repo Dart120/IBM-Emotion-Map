@@ -54,11 +54,9 @@ class App extends React.Component {
         sample_size: "Loading..."
       },
       error: false, // notify server errors 
-      modalClosed: false,
+      modalClosed: false, // notify if intoduction modal is closed
     }
-    this.findRegionData = this.findRegionData.bind(this);
-    this.setCurrentRegion = this.setCurrentRegion.bind(this);
-    this.closeModal = this.closeModal.bind(this)
+
   }
 
   componentDidMount() {
@@ -106,7 +104,7 @@ class App extends React.Component {
   // json - json array retrieved from json.anlysis from server
   // regionName - name of the region to search in the json array
   // forUK - boolean to alert if function is being used for the UK dashboard
-  findRegionData(json, regionName, forUK=false){
+  findRegionData = (json, regionName, forUK=false) => {
     // check if mapData has been assigned a value
     // if not, then that means data hasn't been fetched,
     // so return initial data template.
@@ -126,10 +124,10 @@ class App extends React.Component {
     }
   }
 
-  // This function is to be passed into the map component
+  // This method is passed into the map component as props
   // so that the child map component can change parent
   // app components state for the regional dashboard
-  setCurrentRegion(regionName){
+  setCurrentRegion = (regionName) => {
     this.setState((prevState) => ({
       regionalData : this.findRegionData(prevState.mapData, regionName),
     }))
@@ -138,8 +136,7 @@ class App extends React.Component {
   updateTooltip = (content) => {
     this.setState({content});
   }
-  closeModal(){
-    console.log("clicked")
+  closeModal = () => {
     this.setState({modalClosed: true})
   }
 

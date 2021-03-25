@@ -8,8 +8,10 @@ import TwitterLogoList from '../Components/TwitterLogoList';
 export default function Dashboard(props) {
     const data = props.data;
     
+    // function that clips the percentage values between 0 and 100
     const clamp = (num) => Math.min(Math.max(num, 0), 100);
 
+    // round each percentage to nearest integer
     const valuesList = [Math.round(data.fear), Math.round(data.confident),Math.round(data.anger),Math.round(data.joy),Math.round(data.sadness)]
     valuesList.forEach((e, index) => valuesList[index] = clamp(e));
     const emotionsList = ["fear", "confident", "anger", "joy", "sadness"]
@@ -24,6 +26,7 @@ export default function Dashboard(props) {
       return b[1] - a[1];
     });
 
+    // return the emotions ordered from highest to lowest percentage
     const orderedEmotions = () => {
       var toReturn = []
       for(let i = 0; i < 5; i++){
