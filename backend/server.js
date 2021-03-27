@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 console.log(path.join(__dirname, "..","frontend", "build", "index.html"))
-app.use(express.static(path.join(__dirname,"..","frontend", 'build')));
+app.use(express.static(path.join(__dirname,"..", 'build')));
 
 require('dotenv').config()
 
@@ -21,7 +21,7 @@ app.use(express.json());
 let data_list = []
 app.get('/*', function(req, res) {
     console.log('here')
-    res.sendFile(path.join(__dirname, "..","frontend", 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, "..", 'build', 'index.html'));
   });
 //loads in list of regions
 const regions_list = JSON.parse(fs.readFileSync('regions.json'))
