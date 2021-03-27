@@ -19,10 +19,7 @@ const client = new MongoClient(uri, { useUnifiedTopology: true });
 app.use(express.json());
 
 let data_list = []
-app.get('/*', function(req, res) {
-    console.log('here')
-    res.sendFile(path.join(__dirname, "..", 'build', 'index.html'));
-  });
+
 //loads in list of regions
 const regions_list = JSON.parse(fs.readFileSync('regions.json'))
 
@@ -343,5 +340,9 @@ client.connect();
 main()
 setInterval(function () { main() }, process.env.DATA_REFRESH_INTERVAL)
 
+app.get('/*', function(req, res) {
+    console.log('here')
+    res.sendFile(path.join(__dirname, "..", 'build', 'index.html'));
+  });
 const port = process.env.PORT || 8020
 const server = app.listen(port, () => console.log(`Listening on port ${port}...`))
