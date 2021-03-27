@@ -322,7 +322,7 @@ async function main() {
 }
 
 app.get('/api/recent', async (req, res) => {
-
+    console.loh('hit')
     const database = client.db("emotional-map");
     const collection = database.collection("emotion-data");
     // finds most recent database entry
