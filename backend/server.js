@@ -14,14 +14,16 @@ app.use(express.static(path.join(__dirname,"..", 'build')));
 require('dotenv').config()
 
 const uri = `${process.env.MONGO_URI}`
+console.log(process.env)
 const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 app.use(express.json());
 
 let data_list = []
-
+console.log(__dirname,'pwd')
 //loads in list of regions
-const regions_list = JSON.parse(fs.readFileSync('regions.json'))
+const regions_list = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'regions.json')))
+
 
 //gets the tweet data for specific region
 async function get_tweets(region) {
@@ -337,8 +339,8 @@ app.get('/api/recent', async (req, res) => {
 client.connect();
 
 //runs analysis on launch and periodically thereafter
-main()
-setInterval(function () { main() }, process.env.DATA_REFRESH_INTERVAL)
+// main()
+// setInterval(function () { main() }, process.env.DATA_REFRESH_INTERVAL)
 
 app.get('/*', function(req, res) {
     console.log('here')
